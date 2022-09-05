@@ -7,7 +7,7 @@ export class FetchWeatherDataPoint {
   private notify: { send: (string) => void };
 
   constructor(
-    client: { fetch: () => Promise<DataPoint[]> },
+    client: { fetch: (city_id: number) => Promise<DataPoint[]> },
     port: { set: (val) => void },
     notify: { send: (string) => void }
   ) {
