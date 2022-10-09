@@ -10,5 +10,8 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
+      - name: Chmod
+        run: chmod -x ./deploy.sh
+
       - name: Install and Build 🔧
         run: ./deploy.sh
