@@ -12,21 +12,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      VITE_OPEN_WEATHER_MAP_API_KEY: ${{ secrets.OPEN_WEATHER_MAP_API_KEY }}
+      VITE_OPEN_WEATHER_MAP_CURRENT_WEATHER_API_BASE: https://api.openweathermap.org/data/2.5/weather
+      VITE_OPEN_WEATHER_MAP_WEATHER_FORECAST_API_BASE: https://api.openweathermap.org/data/2.5/forecast
     steps:
     - uses: actions/checkout@v3
     - name: Setup Node
       uses: actions/setup-node@v1
       with:
         node-version: 16
-    - name: Make envfile
-      uses: SpicyPizza/create-envfile@v1.3
-      with:
-        file_name: .env
-        envkey_VITE_OPEN_WEATHER_MAP_API_KEY: ${{ secrets.OPEN_WEATHER_MAP_API_KEY }}
-        envkey_my_name: ${{ secrets.MY_NAME }}
-        envkey_VITE_OPEN_WEATHER_MAP_CURRENT_WEATHER_API_BASE: https://api.openweathermap.org/data/2.5/weather
-        envkey_VITE_OPEN_WEATHER_MAP_WEATHER_FORECAST_API_BASE: https://api.openweathermap.org/data/2.5/forecast
-    - run: cat .env
     - run: yarn
     - run: yarn build
     - name: Deploy
