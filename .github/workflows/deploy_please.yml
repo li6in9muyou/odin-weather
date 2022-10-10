@@ -33,6 +33,7 @@ jobs:
         envkey_VITE_OPEN_WEATHER_MAP_CURRENT_WEATHER_API_BASE: https://api.openweathermap.org/data/2.5/weather
         envkey_VITE_OPEN_WEATHER_MAP_WEATHER_FORECAST_API_BASE: https://api.openweathermap.org/data/2.5/forecast
     - run: ls -la
+    - run: echo .env
     - run: yarn
     - run: yarn run build
     - name: Deploy
