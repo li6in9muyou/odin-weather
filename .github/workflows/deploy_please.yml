@@ -6,11 +6,11 @@ name: deploy_please
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
 
 jobs:
   build:
+    env:
+      VITE_OPEN_WEATHER_MAP_API_KEY: ${{ secrets.OPEN_WEATHER_MAP_API_KEY }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -22,7 +22,6 @@ jobs:
     - name: Yarn build
       run: yarn build
       env:
-        VITE_OPEN_WEATHER_MAP_API_KEY: ${{ secrets.OPEN_WEATHER_MAP_API_KEY }}
         VITE_OPEN_WEATHER_MAP_CURRENT_WEATHER_API_BASE: https://api.openweathermap.org/data/2.5/weather
         VITE_OPEN_WEATHER_MAP_WEATHER_FORECAST_API_BASE: https://api.openweathermap.org/data/2.5/forecast
     - name: Deploy
